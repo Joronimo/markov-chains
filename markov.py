@@ -40,14 +40,17 @@ def make_chains(text_string):
         >>> chains[('there','juanita')]
         [None]
     """
+
+
     word = text_string.split()
     chains = {}
-    bigrams = []
+    
 
-    for i in range(len(word) - 1):
-        bigrams.append((word[i], word[i + 1]))  #every two words appends as tuple
+    for i in range(len(word) - 2):
+        bigram = (word[i], word[i + 1])
+        next_word = word[i + 2]
+        chains[bigram] = chains.get(bigram, []) + [next_word]
 
-    print(bigrams)
 
     return chains
 
