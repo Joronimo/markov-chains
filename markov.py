@@ -2,6 +2,7 @@
 
 from random import choice
 
+import sys
 
 def open_and_read_file(file_path):
     """Take file path as string; return text as string.
@@ -74,10 +75,11 @@ def make_text(chains):
     return " ".join(words)
 
 
-input_path = "gettysburg.txt"
+# input_path = "green-eggs.txt"
 
-# Open the file and turn it into one long string
-input_text = open_and_read_file(input_path)
+# # Open the file and turn it into one long string
+# input_text = 
+input_text = open_and_read_file(sys.argv[1])
 
 # Get a Markov chain
 chains = make_chains(input_text)
