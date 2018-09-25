@@ -40,10 +40,14 @@ def make_chains(text_string):
         >>> chains[('there','juanita')]
         [None]
     """
-
+    word = text_string.split()
     chains = {}
+    bigrams = []
 
-    # your code goes here
+    for i in range(len(word) - 1):
+        bigrams.append((word[i], word[i + 1]))  #every two words appends as tuple
+
+    print(bigrams)
 
     return chains
 
@@ -58,16 +62,15 @@ def make_text(chains):
     return " ".join(words)
 
 
-# input_path = "green-eggs.txt"
+input_path = "green-eggs.txt"
 
-# # Open the file and turn it into one long string
-# input_text = open_and_read_file(input_path)
+# Open the file and turn it into one long string
+input_text = open_and_read_file(input_path)
 
-# # Get a Markov chain
-# chains = make_chains(input_text)
+# Get a Markov chain
+chains = make_chains(input_text)
 
-# # Produce random text
-# random_text = make_text(chains)
+# Produce random text
+random_text = make_text(chains)
 
-# print(random_text)
-open_and_read_file('green-eggs.txt')
+print(random_text)
