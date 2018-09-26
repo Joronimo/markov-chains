@@ -47,11 +47,10 @@ def make_chains(text_string):
     chains = {}
     
 
-    for i in range(len(word) - 2):
-        bigram = (word[i], word[i + 1])
-        next_word = word[i + 2]
-        chains[bigram] = chains.get(bigram, []) + [next_word]
-
+    for i in range(len(word) - n):
+        n_gram = tuple(word[i:i+n])
+        next_word = word[i + n]
+        chains[n_gram] = chains.get(n_gram, []) + [next_word]
 
     return chains
 
@@ -61,14 +60,13 @@ def make_text(chains):
 
     key = choice(list(chains))
 
-    words = [key[0], key[1]]
+    words = list(key)
 
-    #chains[key]
 
     while key in chains:
         value = choice(chains[key])
         words.append(value)
-        key = (key[1], value)
+        key = (key[1:] + (value,))
 
 
 
@@ -80,6 +78,7 @@ def make_text(chains):
 # # Open the file and turn it into one long string
 # input_text = 
 input_text = open_and_read_file(sys.argv[1])
+n = int(sys.argv[2])
 
 # Get a Markov chain
 chains = make_chains(input_text)
